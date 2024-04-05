@@ -80,7 +80,7 @@ for _ in range(m):
                         ni, nj = i + di * leng, j + dj * leng
 
                         if 0 <= ni < n and 0 <= nj < n:
-                            if arr[ni][nj] >= 0:
+                            if arr[ni][nj] > 0:
                                 save_val += arr[ni][nj]
 
                             elif arr[ni][nj] == -1 and herbicide[ni][nj] != -1:
