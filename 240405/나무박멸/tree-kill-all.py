@@ -5,6 +5,8 @@ n, m, k, c = map(int, input().split())
 
 # arr : 나무, herbicide : 제초제
 arr = [list(map(int, input().split())) for _ in range(n)]
+
+
 herbicide = [[0] * n for _ in range(n)]
 
 ans = 0
@@ -66,7 +68,7 @@ for _ in range(m):
     # 3. 제초제를 뿌릴 위치 선정
 
     max_val = 0
-    max_idx = (0, 0)
+    max_idx = (-1, -1)
 
     for i in range(n):
         for j in range(n):
@@ -100,27 +102,32 @@ for _ in range(m):
 
     # 4. 제초제를 뿌리는 작업 진행
 
-    i, j = max_idx
+    if max_idx != (-1, -1):
+        i, j = max_idx
 
-    ans += arr[i][j]
-    arr[i][j] = -2
-    herbicide[i][j] = c
+        ans += arr[i][j]
+        arr[i][j] = -2
+        herbicide[i][j] = c
 
-    for di, dj in [(-1, -1), (-1, 1), (1, 1), (1, -1)]:
-        for leng in range(1, k + 1):
-            ni, nj = i + di * leng, j + dj * leng
+        for di, dj in [(-1, -1), (-1, 1), (1, 1), (1, -1)]:
+            for leng in range(1, k + 1):
+                ni, nj = i + di * leng, j + dj * leng
 
-            if 0 <= ni < n and 0 <= nj < n:
-                if arr[ni][nj] >= 0 or (arr[ni][nj] == -1 and herbicide[ni][nj] != -1):
-                    ans += arr[ni][nj]
-                    arr[ni][nj] = -2
-                    herbicide[ni][nj] = c
-                
+                if 0 <= ni < n and 0 <= nj < n:
+                    if arr[ni][nj] >= 0:
+                        ans += arr[ni][nj]
+                        arr[ni][nj] = -2
+                        herbicide[ni][nj] = c
+                        
+                    elif arr[ni][nj] == -1 and herbicide[ni][nj] != -1:
+                        arr[ni][nj] = -2
+                        herbicide[ni][nj] = c
+                    
+                    else:
+                        break
+
                 else:
                     break
-
-            else:
-                break
 
                 
     # for i in range(n):
