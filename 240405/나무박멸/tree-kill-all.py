@@ -15,6 +15,8 @@ for i in range(n):
     for j in range(n):
         if arr[i][j] == -1:
             herbicide[i][j] = -1
+            
+# print('==============================')
 
 for _ in range(m):
     # 1. 나무의 성장
@@ -27,7 +29,7 @@ for _ in range(m):
 
                     if 0 <= ni < n and 0 <= nj < n and arr[ni][nj] > 0:
                         arr[i][j] += 1
-
+    # print('1. 나무의 성장-', _)
     # for i in range(n):
     #     print(*arr[i])
 
@@ -60,6 +62,7 @@ for _ in range(m):
                             if save_arr[ni][nj] == 0:
                                 arr[ni][nj] += spread_val
                 
+    # print('2. 나무의 번식 -', _)
     # for i in range(n):
     #     print(*arr[i])
 
@@ -92,7 +95,7 @@ for _ in range(m):
                 if max_val < save_val:
                     max_val = save_val
                     max_idx = (i, j)
-
+    # print('3. 제초제를 뿌릴 위치 선정 -', _)
     # print(max_val)
     # print(max_idx)
 
@@ -127,7 +130,7 @@ for _ in range(m):
                 else:
                     break
 
-                
+    # print('4. 제초제를 뿌리는 작업 진행 -', _)
     # for i in range(n):
     #     print(*arr[i])
 
@@ -146,15 +149,11 @@ for _ in range(m):
                 
                 if herbicide[i][j] == 0:
                     arr[i][j] = 0
-
+    # print('5. 제초제 연도 감소 -', _)
     # for i in range(n):
     #     print(*arr[i])
 
     # print('==============================')
 
-    # for i in range(n):
-    #     print(*herbicide[i])
-
-    # print('==============================')
 
 print(ans)
