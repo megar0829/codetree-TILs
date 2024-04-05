@@ -47,7 +47,7 @@ for _ in range(m):
                     ni, nj = i + di, j + dj
                     
                     if 0 <= ni < n and 0 <= nj < n:
-                        if save_arr[ni][nj] == 0 or (save_arr[ni][nj] == -1 and herbicide[ni][nj] == 0):
+                        if save_arr[ni][nj] == 0:
                             cnt += 1
 
                 if cnt:
@@ -57,7 +57,7 @@ for _ in range(m):
                         ni, nj = i + di, j + dj
                         
                         if 0 <= ni < n and 0 <= nj < n:
-                            if save_arr[ni][nj] == 0 or (save_arr[ni][nj] == -1 and herbicide[ni][nj] == 0):
+                            if save_arr[ni][nj] == 0:
                                 arr[ni][nj] += spread_val
                 
     # for i in range(n):
@@ -82,9 +82,6 @@ for _ in range(m):
                         if 0 <= ni < n and 0 <= nj < n:
                             if arr[ni][nj] > 0:
                                 save_val += arr[ni][nj]
-
-                            elif arr[ni][nj] == -1 and herbicide[ni][nj] != -1:
-                                continue
                             
                             else:
                                 break
@@ -123,10 +120,6 @@ for _ in range(m):
                         arr[ni][nj] = -2
                         herbicide[ni][nj] = c
                         break
-                        
-                    elif arr[ni][nj] == -1 and herbicide[ni][nj] != -1:
-                        arr[ni][nj] = -2
-                        herbicide[ni][nj] = c
                     
                     else:
                         break
@@ -150,6 +143,9 @@ for _ in range(m):
             
             elif herbicide[i][j] > 0:
                 herbicide[i][j] -= 1
+                
+                if herbicide[i][j] == 0:
+                    arr[i][j] = 0
 
     # for i in range(n):
     #     print(*arr[i])
