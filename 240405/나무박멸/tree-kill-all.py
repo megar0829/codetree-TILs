@@ -114,10 +114,15 @@ for _ in range(m):
                 ni, nj = i + di * leng, j + dj * leng
 
                 if 0 <= ni < n and 0 <= nj < n:
-                    if arr[ni][nj] >= 0:
+                    if arr[ni][nj] > 0:
                         ans += arr[ni][nj]
                         arr[ni][nj] = -2
                         herbicide[ni][nj] = c
+
+                    elif arr[ni][nj] == 0:
+                        arr[ni][nj] = -2
+                        herbicide[ni][nj] = c
+                        break
                         
                     elif arr[ni][nj] == -1 and herbicide[ni][nj] != -1:
                         arr[ni][nj] = -2
